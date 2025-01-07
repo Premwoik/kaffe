@@ -50,6 +50,7 @@ defmodule Kaffe.Config do
   end
 
   def ssl_config(true), do: [ssl: true]
+  def ssl_config(opts) when is_list(opts), do: [ssl: opts]
   def ssl_config(_), do: []
 
   def ssl_config(_client_cert = nil, _client_cert_key = nil), do: []
