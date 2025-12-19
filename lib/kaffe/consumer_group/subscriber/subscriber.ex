@@ -121,7 +121,9 @@ defmodule Kaffe.Subscriber do
         compile_message(message, state.topic, state.partition)
       end)
 
-    Logger.debug("Sending #{Enum.count(messages)} messages to worker: #{inspect(state.worker_pid)}")
+    Logger.debug(
+      "info#:kafka_message_set topic=#{state.topic} partition=#{state.partition} Sending #{Enum.count(messages)} messages to worker: #{inspect(state.worker_pid)}"
+    )
 
     worker().process_messages(state.worker_pid, self(), topic, partition, state.gen_id, messages)
 
