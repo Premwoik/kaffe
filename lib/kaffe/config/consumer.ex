@@ -102,6 +102,8 @@ defmodule Kaffe.Config.Consumer do
       min_bytes: min_bytes(config_key),
       max_wait_time: max_wait_time(config_key),
       sleep_timeout: sleep_timeout(config_key),
+      prefetch_count: prefetch_count(config_key),
+      prefetch_bytes: prefetch_bytes(config_key),
       subscriber_retries: subscriber_retries(config_key),
       subscriber_retry_delay_ms: subscriber_retry_delay_ms(config_key),
       offset_reset_policy: offset_reset_policy(config_key),
@@ -154,6 +156,14 @@ defmodule Kaffe.Config.Consumer do
 
   def sleep_timeout(config_key) do
     config_get(config_key, :sleep_timeout, 1_000)
+  end
+
+  def prefetch_count(config_key) do
+    config_get(config_key, :prefetch_count, 10)
+  end
+
+  def prefetch_bytes(config_key) do
+    config_get(config_key, :prefetch_bytes, 100_000)
   end
 
   def subscriber_retries(config_key) do
